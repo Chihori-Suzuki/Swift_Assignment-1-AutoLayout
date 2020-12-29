@@ -10,61 +10,46 @@ import UIKit
 
 class ViewController: UIViewController {
 
-  let mainView: UIView = {
-    let main = UIView()
-    // important when setting contraints programmatically
-    main.translatesAutoresizingMaskIntoConstraints = false
-    main.backgroundColor = .green
-    return main
-  }()
+    let mainView: UIView = {
+        let main = UIView()
+        // important when setting contraints programmatically
+        main.translatesAutoresizingMaskIntoConstraints = false
+        main.backgroundColor = .green
+        return main
+    }()
   
-    let purpleView: UIView = { // purple box
+    let redView: UIStackView =  {
+        let sv = UIStackView()
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.backgroundColor = .red
+        return sv
+    }()
+    
+    let orangeView1: UIView = {
+        let sv = UIView()
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.backgroundColor = .orange
+        return sv
+    }()
+    
+    let orangeView2: UIView = {
+        let sv = UIView()
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.backgroundColor = .orange
+        return sv
+    }()
+  
+    let blueSV: UIStackView = {
+        let sv = UIStackView()
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        return sv
+    }()
+    
+    let purpleView: UIView = {
         let purple = UIView()
         purple.translatesAutoresizingMaskIntoConstraints = false
         purple.backgroundColor = .purple
         return purple
-    }()
-    
-    let blueView1: UIView = { // blue box
-        let blue = UIView()
-        blue.translatesAutoresizingMaskIntoConstraints = false
-        blue.backgroundColor = .blue
-        return blue
-    }()
-    
-    let blueView2: UIView = { // purple box
-        let blue = UIView()
-        blue.translatesAutoresizingMaskIntoConstraints = false
-        blue.backgroundColor = .blue
-        return blue
-    }()
-    
-    let blueView3: UIView = { // purple box
-        let blue = UIView()
-        blue.translatesAutoresizingMaskIntoConstraints = false
-        blue.backgroundColor = .blue
-        return blue
-    }()
-    
-    let redView: UIView = { // purple box
-        let red = UIView()
-        red.translatesAutoresizingMaskIntoConstraints = false
-        red.backgroundColor = .red
-        return red
-    }()
-    
-    let orgView1: UIView = { // purple box
-        let org = UIView()
-        org.translatesAutoresizingMaskIntoConstraints = false
-        org.backgroundColor = .orange
-        return org
-    }()
-    
-    let orgView2: UIView = { // purple box
-        let org = UIView()
-        org.translatesAutoresizingMaskIntoConstraints = false
-        org.backgroundColor = .orange
-        return org
     }()
     
   let squareButton: UIButton = {
@@ -93,88 +78,31 @@ class ViewController: UIViewController {
     butt.addTarget(self, action: #selector(landscapeTapped), for: .touchUpInside)
     return butt
   }()
-    
+  
   var widthAnchor: NSLayoutConstraint?
   var heightAnchor: NSLayoutConstraint?
   
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .white
-    
     view.addSubview(mainView)
-    view.addSubview(purpleView)
-    view.addSubview(blueView1)
-    view.addSubview(blueView2)
-    view.addSubview(blueView3)
-    view.addSubview(redView)
-    view.addSubview(orgView1)
-    view.addSubview(orgView2)
-    
+    mainView.addSubview(redView)
+    redView.addArrangedSubview(orangeView1)
+    redView.addArrangedSubview(orangeView2)
+    mainView.addSubview(purpleView)
     setupLayout()
   }
-
 
   fileprivate func setupLayout() {
     mainView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     mainView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     widthAnchor = mainView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7, constant: 0)
     widthAnchor?.isActive = true
+    
     heightAnchor = mainView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.7, constant: 0)
     heightAnchor?.isActive = true
     
-    //purpleView
-    purpleView.leadingAnchor.constraint(equalTo: mainView.safeAreaLayoutGuide.leadingAnchor, constant: 145).isActive = true
-    purpleView.topAnchor.constraint(equalTo: mainView.safeAreaLayoutGuide.topAnchor, constant: 700).isActive = true
-    purpleView.trailingAnchor.constraint(equalTo: mainView.safeAreaLayoutGuide.trailingAnchor, constant: -30).isActive = true
-    heightAnchor = purpleView.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.1, constant: 10)
-    heightAnchor?.isActive = true
-
-    //blueView1
-    blueView1.centerXAnchor.constraint(equalTo: mainView.centerXAnchor).isActive = true
-    blueView1.topAnchor.constraint(equalTo: mainView.safeAreaLayoutGuide.topAnchor, constant: 100).isActive = true
-    widthAnchor = blueView1.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.1, constant: 15)
-    widthAnchor?.isActive = true
-    heightAnchor = blueView1.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.08, constant: 10)
-    heightAnchor?.isActive = true
-
-    //blueView2
-    blueView2.centerXAnchor.constraint(equalTo: mainView.centerXAnchor).isActive = true
-    blueView2.topAnchor.constraint(equalTo: mainView.safeAreaLayoutGuide.topAnchor, constant: 300).isActive = true
-    widthAnchor = blueView2.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.1, constant: 15)
-    widthAnchor?.isActive = true
-    heightAnchor = blueView2.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.08, constant: 10)
-    heightAnchor?.isActive = true
-
-    //blueView3
-    blueView3.centerXAnchor.constraint(equalTo: mainView.centerXAnchor).isActive = true
-    blueView3.topAnchor.constraint(equalTo: mainView.safeAreaLayoutGuide.topAnchor, constant: 500).isActive = true
-    widthAnchor = blueView3.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.1, constant: 15)
-    widthAnchor?.isActive = true
-    heightAnchor = blueView3.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.08, constant: 10)
-    heightAnchor?.isActive = true
-
-    //redView
-    redView.topAnchor.constraint(equalTo: mainView.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
-    redView.trailingAnchor.constraint(equalTo: mainView.safeAreaLayoutGuide.trailingAnchor, constant: -30).isActive = true
-    widthAnchor = redView.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.3, constant: 0)
-    widthAnchor?.isActive = true
-    heightAnchor = redView.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.1, constant: 0)
-    heightAnchor?.isActive = true
-
-    //orgView1
-    orgView1.topAnchor.constraint(equalTo: redView.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
-    orgView1.leadingAnchor.constraint(equalTo: redView.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
-    orgView1.trailingAnchor.constraint(equalTo: redView.safeAreaLayoutGuide.trailingAnchor, constant: -80).isActive = true
-    heightAnchor = orgView1.heightAnchor.constraint(equalTo: redView.heightAnchor, multiplier: 0.8, constant: 0)
-    heightAnchor?.isActive = true
-
-    //orgView2
-    orgView2.topAnchor.constraint(equalTo: redView.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
-    orgView2.leadingAnchor.constraint(equalTo: redView.safeAreaLayoutGuide.leadingAnchor, constant: 100).isActive = true
-    orgView2.trailingAnchor.constraint(equalTo: redView.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
-    heightAnchor = orgView2.heightAnchor.constraint(equalTo: redView.heightAnchor, multiplier: 0.8, constant: 0)
-    heightAnchor?.isActive = true
-    
+    createSV()
     
     let buttStackView = UIStackView(arrangedSubviews: [
       squareButton, portraitButton, landScapeButton])
@@ -191,18 +119,66 @@ class ViewController: UIViewController {
       buttStackView.widthAnchor.constraint(equalTo: view.widthAnchor)
       ])
   }
+    
+    func createSV() {
+        redView.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 30).isActive = true
+        redView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -30).isActive = true
+        redView.widthAnchor.constraint(equalToConstant: 310).isActive = true
+        redView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        
+        redView.isLayoutMarginsRelativeArrangement = true
+        redView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 15, leading: 15, bottom: 15, trailing: 15)
+        redView.distribution = .fill
+        redView.spacing = 15
+        
+        orangeView1.widthAnchor.constraint(equalToConstant: 170).isActive = true
+        
+        
+        let topBlueBox = createBlueBox()
+        let middleBlueBox = createBlueBox()
+        let bottomBlueBox = createBlueBox()
+        blueSV.addArrangedSubview(topBlueBox)
+        blueSV.addArrangedSubview(middleBlueBox)
+        blueSV.addArrangedSubview(bottomBlueBox)
+        
+        mainView.addSubview(blueSV)
+        
+        blueSV.centerXAnchor.constraint(equalTo: mainView.centerXAnchor).isActive = true
+        blueSV.centerYAnchor.constraint(equalTo: mainView.centerYAnchor).isActive = true
+        blueSV.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.6).isActive = true
+        blueSV.axis = .vertical
+        blueSV.distribution = .equalSpacing
+//        blueSV.alignment = .center
+        
+        purpleView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -30).isActive = true
+        purpleView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -30).isActive = true
+        purpleView.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.6).isActive = true
+        purpleView.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.1).isActive = true
+        
+    }
 
-@objc private func squareTapped() {
+    func createBlueBox() -> UIView {
+        let blueBox = UIView()
+        blueBox.translatesAutoresizingMaskIntoConstraints = false
+        blueBox.backgroundColor = .blue
+        blueBox.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        blueBox.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        
+        
+        return blueBox
+    }
+
+  @objc private func squareTapped() {
     view.layoutIfNeeded()
     UIView.animate(withDuration: 2.0) {
-        self.widthAnchor?.isActive = false
-        self.widthAnchor? = self.mainView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9)
-        self.widthAnchor?.isActive = true
+      self.widthAnchor?.isActive = false
+      self.widthAnchor? = self.mainView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9)
+      self.widthAnchor?.isActive = true
       
-        self.heightAnchor?.isActive = false
-        self.heightAnchor? = self.mainView.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9)
-        self.heightAnchor?.isActive = true
-        self.view.layoutIfNeeded()
+      self.heightAnchor?.isActive = false
+      self.heightAnchor? = self.mainView.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9)
+      self.heightAnchor?.isActive = true
+      self.view.layoutIfNeeded()
     }
   }
   
@@ -218,6 +194,7 @@ class ViewController: UIViewController {
       self.heightAnchor?.isActive = true
       self.view.layoutIfNeeded()
     }
+    
   }
   
   @objc private func landscapeTapped() {
